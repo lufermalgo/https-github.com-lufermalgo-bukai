@@ -103,7 +103,7 @@ Registrar (implícitamente) las competencias observadas, asignando señales o et
 💡 Bonus:
 Si el modelo lo permite, estructura las conversaciones de forma que el agente pueda adaptarse a la duración disponible, priorizando competencias clave y ajustando la profundidad de las preguntas en función del tiempo y la apertura del usuario.`,
   bodyColor: '#4285f4',
-  voice: 'Kore',
+  voice: 'Fenrir',
 };
 
 export const Charlotte: Agent = {
