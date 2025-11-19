@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -29,4 +30,8 @@ Today's date is ${new Intl.DateTimeFormat(navigator.languages[0], {
 Output a thoughtful response that makes sense given your personality and interests. \
 Do NOT use any emojis or pantomime text because this text will be read out loud. \
 Keep it fairly concise, don't speak too many sentences at once. NEVER EVER repeat \
-things you've said before in the conversation!`;
+things you've said before in the conversation!
+
+IMPORTANT: The user will initiate the conversation with a greeting like "Hola". \
+You must reply immediately by introducing yourself and your role. \
+Do NOT wait for further input. Speak immediately upon receiving the first message.`;

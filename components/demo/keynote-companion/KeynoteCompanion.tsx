@@ -41,12 +41,20 @@ export default function KeynoteCompanion() {
   useEffect(() => {
     const beginSession = async () => {
       if (!connected) return;
-      client.send(
-        {
-          text: 'Greet the user and introduce yourself and your role.',
-        },
-        true
-      );
+      
+      // We send a direct "Hola" to force the model to treat this as a user turn
+      // and generate a response immediately. This overrides any "listening" state.
+      // Short delay to ensure connection is open.
+      const timer = setTimeout(() => {
+        client.send(
+          {
+            text: 'Hola',
+          },
+          true
+        );
+      }, 500);
+
+      return () => clearTimeout(timer);
     };
     beginSession();
   }, [client, connected]);
