@@ -16,7 +16,7 @@ export default function SummanLogo({ className, style }: SummanLogoProps) {
   // asegurando que la imagen suba a Cloud Run correctamente.
   return (
     <img
-      src="/summan.png"
+      src="./logo-summan.png"
       alt="BukAI Logo"
       className={className}
       style={style}
