@@ -34,7 +34,7 @@ export type ControlTrayProps = {
 function ControlTray({ children }: ControlTrayProps) {
   const [audioRecorder] = useState(() => new AudioRecorder());
   const [muted, setMuted] = useState(false);
-  const [allowAudioTransmission, setAllowAudioTransmission] = useState(false);
+  const allowAudioTransmission = useRef(false);
   const connectButtonRef = useRef<HTMLButtonElement>(null);
 
   const { showAgentEdit, showUserConfig } = useUI();
@@ -59,19 +59,19 @@ function ControlTray({ children }: ControlTrayProps) {
   // We block audio transmission for a brief moment to ensure the text command wins the race.
   useEffect(() => {
     if (connected) {
-      setAllowAudioTransmission(false);
+      allowAudioTransmission.current = false;
       const timer = setTimeout(() => {
-        setAllowAudioTransmission(true);
-      }, 3000); // 3.0s delay to allow the agent to start greeting
+        allowAudioTransmission.current = true;
+      }, 1500); // Reduced to 1.5s to ensure mic is ready when user replies
       return () => clearTimeout(timer);
     } else {
-      setAllowAudioTransmission(false);
+      allowAudioTransmission.current = false;
     }
   }, [connected]);
 
   useEffect(() => {
     const onData = (base64: string) => {
-      if (!allowAudioTransmission) return;
+      if (!allowAudioTransmission.current) return;
 
       client.sendRealtimeInput([
         {
@@ -88,7 +88,7 @@ function ControlTray({ children }: ControlTrayProps) {
     return () => {
       audioRecorder.off('data', onData);
     };
-  }, [connected, client, muted, audioRecorder, allowAudioTransmission]);
+  }, [connected, client, muted, audioRecorder]);
 
   return (
     <section className="control-tray">

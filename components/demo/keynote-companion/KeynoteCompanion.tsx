@@ -52,7 +52,7 @@ export default function KeynoteCompanion() {
           },
           true
         );
-      }, 500);
+      }, 50);
 
       return () => clearTimeout(timer);
     };
