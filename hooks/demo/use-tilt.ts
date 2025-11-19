@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -34,7 +35,7 @@ export default function useTilt({
 }: UseTiltProps) {
   const [angle, setAngle] = useState<number>(0);
   const [targetAngle, setTargetAngle] = useState<number>(0);
-  const timeoutRef = useRef<NodeJS.Timeout>(undefined);
+  const timeoutRef = useRef<any>(undefined);
   const animationFrameRef = useRef<number>(0);
 
   // Reset to center when not active

@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -31,7 +32,7 @@ export default function BasicFace({
   radius = 250,
   color,
 }: BasicFaceProps) {
-  const timeoutRef = useRef<NodeJS.Timeout>(null);
+  const timeoutRef = useRef<any>(null);
 
   // Audio output volume
   const { volume } = useLiveAPIContext();
